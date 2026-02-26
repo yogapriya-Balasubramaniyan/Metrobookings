@@ -21,11 +21,13 @@ export default function Slot() {
   const [selectedTimes, setSelectedTimes] = useState({});
   const [bookedSlots, setBookedSlots] = useState({});
 
+  /* ================= SLOT TOGGLE ================= */
   const toggleSlot = (slotNumber) => {
     if (bookedSlots[slotNumber]) return;
-    setOpenSlot(openSlot === slotNumber ? null : slotNumber);
+    setOpenSlot((prev) => (prev === slotNumber ? null : slotNumber));
   };
 
+  /* ================= SELECT TIME ================= */
   const handleSelectTime = (slotNumber, time) => {
     setSelectedTimes((prev) => ({
       ...prev,
@@ -33,6 +35,7 @@ export default function Slot() {
     }));
   };
 
+  /* ================= BOOK SLOT ================= */
   const handleBook = (slotNumber, time) => {
     setBookedSlots((prev) => ({
       ...prev,
@@ -56,6 +59,7 @@ export default function Slot() {
 
         return (
           <div key={slotNumber} className="parking-card">
+            {/* ================= SLOT HEADER ================= */}
             <div
               className={`parking-slot ${isBooked ? "booked" : ""}`}
               onClick={() => toggleSlot(slotNumber)}
@@ -63,11 +67,12 @@ export default function Slot() {
               Slot {slotNumber}
               {isBooked && (
                 <span className="booked-time">
-                  {" "}({selectedTime})
+                  {selectedTime}
                 </span>
               )}
             </div>
 
+            {/* ================= TIME LIST ================= */}
             {openSlot === slotNumber && !isBooked && (
               <div className="time-container">
                 {timeSlots.map((time, i) => (
@@ -98,5 +103,4 @@ export default function Slot() {
       })}
     </div>
   );
-};
 }
