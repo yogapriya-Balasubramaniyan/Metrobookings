@@ -116,3 +116,28 @@ body {
     font-size: 13px;
   }
 }
+.time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.book-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background-color: #218838;
+}
+
+.booked-time {
+  font-size: 12px;
+  margin-left: 5px;
+  color: #fff;
+}
