@@ -9,14 +9,14 @@ body {
 .parking-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
+  gap: 20px;
   padding: 30px;
 }
 
 /* ================= CARD ================= */
 .parking-card {
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 15px;
   padding: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -33,7 +33,7 @@ body {
   color: white;
   padding: 10px;
   text-align: center;
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 17px;
   font-weight: 600;
   cursor: pointer;
@@ -64,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 250px;
+  max-height: 200px;
   overflow-y: auto;
   padding-right: 3px;
 }
@@ -130,7 +130,7 @@ body {
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 13px;
   transition: 0.3s ease;
   white-space: nowrap;
