@@ -21,17 +21,29 @@ export default function Slot() {
   const [selectedTimes, setSelectedTimes] = useState({});
   const [bookedSlots, setBookedSlots] = useState({});
 
-  const handleSelectTime = (slot, time) => {
-    setSelectedTimes({ ...selectedTimes, [slot]: time });
+  const toggleSlot = (slotNumber) => {
+    if (bookedSlots[slotNumber]) return;
+    setOpenSlot(openSlot === slotNumber ? null : slotNumber);
   };
 
-  const handleBook = (slot) => {
-    if (!selectedTimes[slot]) {
-      alert("Please select a time first!");
-      return;
-    }
+  const handleSelectTime = (slotNumber, time) => {
+    setSelectedTimes((prev) => ({
+      ...prev,
+      [slotNumber]: time,
+    }));
+  };
 
-    setBookedSlots({ ...bookedSlots, [slot]: true });
+  const handleBook = (slotNumber, time) => {
+    setBookedSlots((prev) => ({
+      ...prev,
+      [slotNumber]: true,
+    }));
+
+    setSelectedTimes((prev) => ({
+      ...prev,
+      [slotNumber]: time,
+    }));
+
     setOpenSlot(null);
   };
 
@@ -40,41 +52,45 @@ export default function Slot() {
       {Array.from({ length: totalSlots }, (_, index) => {
         const slotNumber = index + 1;
         const isBooked = bookedSlots[slotNumber];
+        const selectedTime = selectedTimes[slotNumber];
 
         return (
           <div key={slotNumber} className="parking-card">
             <div
               className={`parking-slot ${isBooked ? "booked" : ""}`}
-              onClick={() =>
-                !isBooked &&
-                setOpenSlot(openSlot === slotNumber ? null : slotNumber)
-              }
+              onClick={() => toggleSlot(slotNumber)}
             >
               Slot {slotNumber}
+              {isBooked && (
+                <span className="booked-time">
+                  {" "}({selectedTime})
+                </span>
+              )}
             </div>
 
             {openSlot === slotNumber && !isBooked && (
               <div className="time-container">
                 {timeSlots.map((time, i) => (
-                  <button
-                    key={i}
-                    className={`time-btn ${
-                      selectedTimes[slotNumber] === time
-                        ? "active blink"
-                        : ""
-                    }`}
-                    onClick={() => handleSelectTime(slotNumber, time)}
-                  >
-                    {time}
-                  </button>
-                ))}
+                  <div key={i} className="time-row">
+                    <button
+                      className={`time-btn ${
+                        selectedTime === time ? "active" : ""
+                      }`}
+                      onClick={() => handleSelectTime(slotNumber, time)}
+                    >
+                      {time}
+                    </button>
 
-                <button
-                  className="book-btn"
-                  onClick={() => handleBook(slotNumber)}
-                >
-                  Confirm Booking
-                </button>
+                    {selectedTime === time && (
+                      <button
+                        className="book-btn"
+                        onClick={() => handleBook(slotNumber, time)}
+                      >
+                        Book
+                      </button>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
           </div>
@@ -82,4 +98,5 @@ export default function Slot() {
       })}
     </div>
   );
+};
 }
