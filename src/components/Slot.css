@@ -17,7 +17,7 @@ body {
 .parking-card {
   background: #ffffff;
   border-radius: 18px;
-  padding: 15px;
+  padding: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
@@ -31,7 +31,7 @@ body {
 .parking-slot {
   background: linear-gradient(135deg, #3b6fc4, #2c5bb0);
   color: white;
-  padding: 12px;
+  padding: 10px;
   text-align: center;
   border-radius: 12px;
   font-size: 17px;
@@ -64,14 +64,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 300px;
+  max-height: 250px;
   overflow-y: auto;
-  padding-right: 5px;
+  padding-right: 3px;
 }
 
 /* Scrollbar Styling */
 .time-container::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
 }
 
 .time-container::-webkit-scrollbar-thumb {
