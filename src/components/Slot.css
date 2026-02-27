@@ -1,19 +1,32 @@
+/* ================= GLOBAL ================= */
 body {
   margin: 0;
+<<<<<<< HEAD
   font-family: Arial, sans-serif;
   background: #7887a4;
+=======
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #6f7fa3, #8fa2c7);
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
 }
 
-/* Parking Grid */
+/* ================= GRID ================= */
 .parking-wrapper {
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
+=======
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 30px;
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
 }
 
-/* Card */
+/* ================= CARD ================= */
 .parking-card {
+<<<<<<< HEAD
   background: rgb(108, 84, 84);
   border-radius: 20px;
   padding: 10px;
@@ -34,87 +47,153 @@ body {
   transition: 0.3s;
 }
 
+=======
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.parking-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* ================= SLOT HEADER ================= */
+.parking-slot {
+  background: linear-gradient(135deg, #3b6fc4, #2c5bb0);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
 .parking-slot:hover {
-  background: #2c5bb0;
+  opacity: 0.9;
 }
 
 /* Booked Slot */
 .parking-slot.booked {
-  background: #d9534f;
+  background: linear-gradient(135deg, #d9534f, #b52b27);
   cursor: not-allowed;
 }
 
-/* Time Section */
+/* Booked Time Text */
+.booked-time {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+/* ================= TIME CONTAINER ================= */
 .time-container {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 3px;
 }
 
-/* Time Buttons */
+/* Scrollbar Styling */
+.time-container::-webkit-scrollbar {
+  width: 3px;
+}
+
+.time-container::-webkit-scrollbar-thumb {
+  background: #c1c8e4;
+  border-radius: 10px;
+}
+
+/* ================= TIME ROW ================= */
+.time-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ================= TIME BUTTON ================= */
 .time-btn {
+<<<<<<< HEAD
+=======
+  flex: 1;
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
   padding: 10px;
   border: none;
-  background: #e6e9f2;
+  background: #f0f3ff;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease;
   font-size: 14px;
+  text-align: left;
 }
 
 .time-btn:hover {
-  background: #d0dbff;
+  background: #dce4ff;
 }
 
 /* Selected Time */
 .time-btn.active {
   background: #3b6fc4;
   color: white;
+  font-weight: 500;
 }
 
 /* Blink Animation */
 @keyframes blink {
   0% { opacity: 1; }
-  50% { opacity: 0.5; }
+  50% { opacity: 0.6; }
   100% { opacity: 1; }
 }
 
-.blink {
+.time-btn.active {
   animation: blink 1s infinite;
 }
 
-/* Confirm Button */
+/* ================= BOOK BUTTON ================= */
 .book-btn {
-  margin-top: 10px;
-  padding: 12px;
-  background: #28a745;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #28a745, #218838);
   border: none;
   color: white;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  font-weight: 500;
+  font-size: 13px;
+  transition: 0.3s ease;
+  white-space: nowrap;
 }
 
 .book-btn:hover {
-  background: #218838;
+  transform: scale(1.05);
+  opacity: 0.95;
 }
 
-/* 📱 Mobile Optimization */
+/* ================= MOBILE OPTIMIZATION ================= */
 @media (max-width: 480px) {
   .parking-wrapper {
-    padding: 20px;
+    padding: 15px;
+    gap: 15px;
   }
 
   .parking-slot {
-    font-size: 16px;
+    font-size: 15px;
     padding: 14px;
   }
 
   .time-btn {
     font-size: 13px;
   }
+<<<<<<< HEAD
 }
 .time-row {
   display: flex;
@@ -141,3 +220,11 @@ body {
   margin-left: 5px;
   color: #fff;
 }
+=======
+
+  .book-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3

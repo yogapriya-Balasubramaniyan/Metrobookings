@@ -23,14 +23,20 @@ export default function Slot() {
 
   /* ================= SLOT TOGGLE ================= */
   const toggleSlot = (slotNumber) => {
+<<<<<<< HEAD
     if (bookedSlots[slotNumber]) return; // prevent opening booked slot
     setOpenSlot((prev) =>
       prev === slotNumber ? null : slotNumber
     );
+=======
+    if (bookedSlots[slotNumber]) return;
+    setOpenSlot((prev) => (prev === slotNumber ? null : slotNumber));
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
   };
 
   /* ================= SELECT TIME ================= */
   const handleSelectTime = (slotNumber, time) => {
+<<<<<<< HEAD
     if (bookedSlots[slotNumber]) return;
 
     setSelectedTimes((prev) => ({
@@ -67,6 +73,27 @@ export default function Slot() {
       delete updated[slotNumber];
       return updated;
     });
+=======
+    setSelectedTimes((prev) => ({
+      ...prev,
+      [slotNumber]: time,
+    }));
+  };
+
+  /* ================= BOOK SLOT ================= */
+  const handleBook = (slotNumber, time) => {
+    setBookedSlots((prev) => ({
+      ...prev,
+      [slotNumber]: true,
+    }));
+
+    setSelectedTimes((prev) => ({
+      ...prev,
+      [slotNumber]: time,
+    }));
+
+    setOpenSlot(null);
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
   };
 
   return (
@@ -78,17 +105,26 @@ export default function Slot() {
 
         return (
           <div key={slotNumber} className="parking-card">
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
             {/* ================= SLOT HEADER ================= */}
             <div
               className={`parking-slot ${isBooked ? "booked" : ""}`}
               onClick={() => toggleSlot(slotNumber)}
             >
               Slot {slotNumber}
+<<<<<<< HEAD
 
               {isBooked && (
                 <span className="booked-time">
                   {isBooked}
+=======
+              {isBooked && (
+                <span className="booked-time">
+                  {selectedTime}
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
                 </span>
               )}
             </div>
@@ -102,9 +138,13 @@ export default function Slot() {
                       className={`time-btn ${
                         selectedTime === time ? "active" : ""
                       }`}
+<<<<<<< HEAD
                       onClick={() =>
                         handleSelectTime(slotNumber, time)
                       }
+=======
+                      onClick={() => handleSelectTime(slotNumber, time)}
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
                     >
                       {time}
                     </button>
@@ -112,10 +152,16 @@ export default function Slot() {
                     {selectedTime === time && (
                       <button
                         className="book-btn"
+<<<<<<< HEAD
                          style={{ marginTop: "12px", background: "#dc3545" }}
                         onClick={() => handleBook(slotNumber)}
                       >
                         Confirm Booking
+=======
+                        onClick={() => handleBook(slotNumber, time)}
+                      >
+                        Book
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
                       </button>
                     )}
                   </div>
@@ -139,6 +185,7 @@ export default function Slot() {
     </div>
   );
 }
+<<<<<<< HEAD
 
 // Registration form 
 // login form 
@@ -147,3 +194,5 @@ export default function Slot() {
 // transport type,timing  
 // fee -cash or upi 
 
+=======
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3

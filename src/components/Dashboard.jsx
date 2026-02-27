@@ -22,14 +22,23 @@ function Dashboard({ slots }) {
   });
 
   return (
+<<<<<<< HEAD
     <div className="card shadow-sm p-2 mb-2 rounded-2">
       <h4 className="text-center mb-2">📊 Hour-wise Availability</h4>
+=======
+    <div className="card shadow-sm p-4 mb-4 rounded-4">
+      <h4 className="text-center mb-4">📊 Hour-wise Availability</h4>
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
 
       <div className="row">
         {hourAvailability.map((hour, index) => (
           <div key={index} className="col-12 col-md-6 col-lg-4 mb-3">
             <div
+<<<<<<< HEAD
               className={`p-2 rounded-4 text-center ${
+=======
+              className={`p-3 rounded-4 text-center ${
+>>>>>>> fb16a60562e15302fa3e734179dc6bc73aff90a3
                 hour.isFull
                   ? "bg-danger text-white"
                   : "bg-light"
