@@ -21,18 +21,52 @@ export default function Slot() {
   const [selectedTimes, setSelectedTimes] = useState({});
   const [bookedSlots, setBookedSlots] = useState({});
 
-  const handleSelectTime = (slot, time) => {
-    setSelectedTimes({ ...selectedTimes, [slot]: time });
+  /* ================= SLOT TOGGLE ================= */
+  const toggleSlot = (slotNumber) => {
+    if (bookedSlots[slotNumber]) return; // prevent opening booked slot
+    setOpenSlot((prev) =>
+      prev === slotNumber ? null : slotNumber
+    );
   };
 
-  const handleBook = (slot) => {
-    if (!selectedTimes[slot]) {
-      alert("Please select a time first!");
-      return;
-    }
+  /* ================= SELECT TIME ================= */
+  const handleSelectTime = (slotNumber, time) => {
+    if (bookedSlots[slotNumber]) return;
 
-    setBookedSlots({ ...bookedSlots, [slot]: true });
-    setOpenSlot(null);
+    setSelectedTimes((prev) => ({
+      ...prev,
+      [slotNumber]: time,
+    }));
+  };
+
+  /* ================= BOOK SLOT ================= */
+  const handleBook = (slotNumber) => {
+  console.log("CONFIRM CLICKED", slotNumber);   // 👈 ADD THIS LINE
+
+  const selectedTime = selectedTimes[slotNumber];
+  if (!selectedTime) return;
+
+  setBookedSlots((prev) => ({
+    ...prev,
+    [slotNumber]: selectedTime,
+  }));
+
+  setOpenSlot(null);
+};
+
+  /* ================= CANCEL BOOKING ================= */
+  const handleCancel = (slotNumber) => {
+    setBookedSlots((prev) => {
+      const updated = { ...prev };
+      delete updated[slotNumber];
+      return updated;
+    });
+
+    setSelectedTimes((prev) => {
+      const updated = { ...prev };
+      delete updated[slotNumber];
+      return updated;
+    });
   };
 
   return (
@@ -40,42 +74,64 @@ export default function Slot() {
       {Array.from({ length: totalSlots }, (_, index) => {
         const slotNumber = index + 1;
         const isBooked = bookedSlots[slotNumber];
+        const selectedTime = selectedTimes[slotNumber];
 
         return (
           <div key={slotNumber} className="parking-card">
+
+            {/* ================= SLOT HEADER ================= */}
             <div
               className={`parking-slot ${isBooked ? "booked" : ""}`}
-              onClick={() =>
-                !isBooked &&
-                setOpenSlot(openSlot === slotNumber ? null : slotNumber)
-              }
+              onClick={() => toggleSlot(slotNumber)}
             >
               Slot {slotNumber}
+
+              {isBooked && (
+                <span className="booked-time">
+                  {isBooked}
+                </span>
+              )}
             </div>
 
+            {/* ================= TIME LIST ================= */}
             {openSlot === slotNumber && !isBooked && (
               <div className="time-container">
                 {timeSlots.map((time, i) => (
-                  <button
-                    key={i}
-                    className={`time-btn ${
-                      selectedTimes[slotNumber] === time
-                        ? "active blink"
-                        : ""
-                    }`}
-                    onClick={() => handleSelectTime(slotNumber, time)}
-                  >
-                    {time}
-                  </button>
-                ))}
+                  <div key={i} className="time-row">
+                    <button
+                      className={`time-btn ${
+                        selectedTime === time ? "active" : ""
+                      }`}
+                      onClick={() =>
+                        handleSelectTime(slotNumber, time)
+                      }
+                    >
+                      {time}
+                    </button>
 
-                <button
-                  className="book-btn"
-                  onClick={() => handleBook(slotNumber)}
-                >
-                  Confirm Booking
-                </button>
+                    {selectedTime === time && (
+                      <button
+                        className="book-btn"
+                         style={{ marginTop: "12px", background: "#dc3545" }}
+                        onClick={() => handleBook(slotNumber)}
+                      >
+                        Confirm Booking
+                      </button>
+                    )}
+                  </div>
+                ))}
               </div>
+            )}
+
+            {/* ================= CANCEL BUTTON ================= */}
+            {isBooked && (
+              <button
+                className="book-btn"
+                style={{ marginTop: "12px", background: "#dc3545" }}
+                onClick={() => handleCancel(slotNumber)}
+              >
+                Cancel Booking
+              </button>
             )}
           </div>
         );
@@ -83,3 +139,11 @@ export default function Slot() {
     </div>
   );
 }
+
+// Registration form 
+// login form 
+// Pre-booking   
+// parking person name 
+// transport type,timing  
+// fee -cash or upi 
+
